@@ -5,7 +5,6 @@ Python3 and some python3 libraries:
  - sklearn (v1.19.1 used)
  - ot (the Optimal Transport library, v0.4.0 used) https://github.com/rflamary/POT
  - matplotlib (to plot, v2.0.2 used)
- - cycler (to plot, v0.10.0 used)
 
 
 ## Content

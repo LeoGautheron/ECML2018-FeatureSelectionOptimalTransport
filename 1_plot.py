@@ -4,17 +4,13 @@
 import os
 import pickle
 
-from cycler import cycler
 import matplotlib
+from matplotlib import rc
 import numpy as np
 import matplotlib.pyplot as plt
 
 matplotlib.rcParams['font.size'] = 22
-color_c = cycler('color', ['k'])
-style_c = cycler('linestyle', ['-', '--', ':', '-.'])
-markr_c = cycler('marker', ['', '.', 'o'])
-c_cms = color_c * markr_c * style_c
-c_csm = color_c * style_c * markr_c
+rc('text', usetex=True)  # use same font as Latex
 
 # Load data
 filename = "./results/officeCaltech.pkl"
@@ -51,9 +47,9 @@ def plotAll():
             ax.set_xticklabels(ticksX)
             plt.xlabel('Number of features selected', fontsize=30)
 
-            ax.set_ylim([15, 45])  # accuracy
-            ax.set_yticks(np.arange(15, 46, 5))
-            ax.set_yticklabels(np.arange(15, 46, 5))
+            ax.set_ylim([0, 100])  # accuracy
+            ax.set_yticks(np.arange(0, 101, 10))
+            ax.set_yticklabels(np.arange(0, 101, 10))
             plt.ylabel('Accuracy', fontsize=30, labelpad=0)
 
             styles = ["--", "-.", "--"]
@@ -77,8 +73,8 @@ def plotAll():
                       for da in res.keys()])
             ax.plot([0, numberFeatures], [accAll, accAll],
                     color='slategray', label="All features", linewidth=4)
-            ax.legend(loc='upper center', ncol=2)
-            filename = algo + "_" + fts + ".png"
+            ax.legend(ncol=2)
+            filename = algo + "_" + fts + ".pdf"
             savePath = os.path.join(".", "results", filename)
             if not os.path.exists("results"):
                 os.makedirs("results")
@@ -230,9 +226,9 @@ def latexArrayComputationTime():
         print("Method", end="")
         for i, d in enumerate(idxs):
             if i < len(idxs)-1:
-                print(" & \multicolumn{2}{c}{$\\searrow$" +
+                print(" & \\multicolumn{2}{c}{$\\searrow$" +
                       str(nbrsFeatures[d]) + "}", end="")
-        print(" & \multicolumn{2}{c}{" + str(numberFeatures) + "}\\\\")
+        print(" & \\multicolumn{2}{c}{" + str(numberFeatures) + "}\\\\")
         print("\\hline")
         for algo in adaptationAlgoNames:
             print(algo, end="")
