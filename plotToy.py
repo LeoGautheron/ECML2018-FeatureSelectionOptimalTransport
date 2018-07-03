@@ -7,6 +7,7 @@ import os
 from scipy.spatial.distance import cdist
 from sklearn.datasets import make_moons
 import matplotlib
+from matplotlib import rc
 import numpy as np
 import ot  # https://github.com/rflamary/POT
 import matplotlib.pyplot as plt
@@ -14,8 +15,10 @@ import matplotlib.pyplot as plt
 ###############################################################################
 # TOY EXAMPLES                                                                #
 markerSize = 50
-matplotlib.rcParams['font.size'] = 16
+matplotlib.rcParams['font.size'] = 18
+rc('text', usetex=True)  # use same font as Latex
 fig = plt.figure(1, figsize=(18, 10))
+np.random.seed(41)
 ###############################################################################
 
 
@@ -92,7 +95,7 @@ plotPoints(ax, np.array([T[i] for i in indexesNearest]),
 
 # Save both toy examples in a png file
 plt.subplots_adjust(wspace=0.0, hspace=0.0)
-savePath = os.path.join(".", "results", "toySampleSelection.png")
+savePath = os.path.join(".", "results", "toySampleSelection.pdf")
 if not os.path.exists("./results"):
     os.makedirs("./results")
-fig.savefig("./results/toySampleSelection.png", bbox_inches="tight")
+fig.savefig(savePath, bbox_inches="tight")

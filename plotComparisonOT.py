@@ -5,6 +5,7 @@ import os
 
 from matplotlib.colors import ListedColormap
 import matplotlib
+from matplotlib import rc
 import numpy as np
 import ot  # https://github.com/rflamary/POT
 import matplotlib.pyplot as plt
@@ -17,6 +18,7 @@ nbS = 30
 nbT = 30
 np.random.seed(41)
 matplotlib.rcParams['font.size'] = 16
+rc('text', usetex=True)  # use same font as Latex
 
 plotResults = True
 markerSize = 100
@@ -115,7 +117,7 @@ for (i, name) in enumerate(names):
 
 # Save figure
 plt.subplots_adjust(wspace=0.30, hspace=0.0)
-savePath = os.path.join(".", "results", "comparisonOT.png")
+savePath = os.path.join(".", "results", "comparisonOT.pdf")
 if not os.path.exists("results"):
     os.makedirs("results")
 fig.savefig(savePath, bbox_inches="tight")
